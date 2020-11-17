@@ -22,10 +22,6 @@ export class EsEntityArgs {
  */
 export function EsEntity(args?: EsEntityArgs): ClassDecorator {
   return (target: any) => {
-    if (args && !args.type) {
-      args.type = args.index;
-    }
-
     // Extracting possible super class from prototype
     const protoType = Object.getPrototypeOf(target).name;
     let superClass = null;

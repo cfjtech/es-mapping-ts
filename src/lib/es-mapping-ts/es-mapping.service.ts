@@ -1,4 +1,5 @@
 import { Client } from '@elastic/elasticsearch';
+import { type } from 'os';
 import { EsEntityArgs } from './es-entity.decorator';
 import { EsFieldArgs } from './es-field.decorator';
 import { EsMapping, EsMappingProperty, InternalEsMapping, InternalEsMappingProperty } from './es-mapping';
@@ -84,8 +85,9 @@ export class EsMappingService {
    * @param target class
    * @param propertyKey the property
    */
-  addField(args: EsFieldArgs, target: any, propertyKey: string | symbol, propertyType?: any): void {
+  addField(args: EsFieldArgs, target: any, propertyKey: string | symbol | Function, propertyType?: any): void {
     const className = target.constructor.name;
+    propertyKey = typeof propertyKey === "function" ? propertyKey() : propertyKey;
     let mapping = this.esMappings.get(className);
     if (!mapping) {
       mapping = new InternalEsMapping();

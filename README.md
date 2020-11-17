@@ -281,7 +281,7 @@ export class BaseMixin {
 | null_value | string | Allow you to define the null value of the field |
 | copy_to | string | Allow you to copy the field value into a group field for _search |
 | relations | string | Define the releation for a join type |
-| fieldClass | string | Class used to get the properties of the nested or object array type |
+| fieldClass | string, function | Return class used to get the properties of the nested or object array type |
 
 Additional properties are allowed, allowing you to manage other elasticsearch properties
 
